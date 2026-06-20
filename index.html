@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paris Admin - Multi-Page Ultimate Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="add.css">
+    
+</head>
+<body class="bg-slate-50 font-sans text-slate-800 antialiased overflow-x-hidden">
+
+    <div id="sidebarOverlay" class="fixed inset-0 bg-black/30 z-40 hidden backdrop-blur-sm lg:hidden"></div>
+
+    <aside id="sidebar" class="sidebar-transition fixed top-0 left-0 z-50 h-screen w-64 bg-gradient-to-b from-blue-950 via-slate-50 to-red-950 text-slate-900 shadow-2xl flex flex-col">
+        <div class="p-5 flex items-center justify-between border-b border-slate-200/50 bg-blue-950 text-white">
+            <h1 class="text-xl font-extrabold tracking-wider flex items-center gap-2">
+                <i class="fa-solid fa-tower-eiffel text-amber-400"></i>Paris Admin
+            </h1>
+            <button id="sidebarClose" class="text-white hover:text-red-400 lg:hidden focus:outline-none">
+                <i class="fas fa-times text-xl"></i>
+            </button>
+        </div>
+
+        <nav class="flex-1 px-3 py-4 space-y-1 overflow-y-auto">
+            <ul class="space-y-1" id="menuTabs">
+                <li class="text-xs font-semibold text-slate-400 px-4 uppercase tracking-wider pb-1">Core</li>
+                <li>
+                    <a href="#dashboard" data-tab="dashboard" class="tab-link flex items-center gap-3 px-4 py-3 rounded-xl bg-gradient-to-r from-blue-700 to-blue-800 text-white shadow-md font-medium transition-all duration-200">
+                        <i class="fas fa-house w-5 text-center"></i> <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#analytic" data-tab="analytic" class="tab-link flex items-center gap-3 px-4 py-3 rounded-xl text-slate-700 hover:bg-slate-200/60 hover:text-blue-900 transition-all duration-200">
+                        <i class="fas fa-chart-line w-5 text-center"></i> <span>Analytic & Charts</span>
+                    </a>
+                </li>
+                <li class="pt-2 pb-1 text-xs font-semibold text-slate-400 px-4 uppercase tracking-wider">Elements</li>
+                <li>
+                    <a href="#forms" data-tab="forms" class="tab-link flex items-center gap-3 px-4 py-3 rounded-xl text-slate-700 hover:bg-slate-200/60 hover:text-blue-900 transition-all duration-200">
+                        <i class="fas fa-edit w-5 text-center"></i> <span>Forms</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#tables" data-tab="tables" class="tab-link flex items-center gap-3 px-4 py-3 rounded-xl text-slate-700 hover:bg-slate-200/60 hover:text-blue-900 transition-all duration-200">
+                        <i class="fas fa-table w-5 text-center"></i> <span>Tables</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#ui-elements" data-tab="ui-elements" class="tab-link flex items-center gap-3 px-4 py-3 rounded-xl text-slate-700 hover:bg-slate-200/60 hover:text-blue-900 transition-all duration-200">
+                        <i class="fas fa-layer-group w-5 text-center"></i> <span>UI Elements</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#wizard" data-tab="wizard" class="tab-link flex items-center gap-3 px-4 py-3 rounded-xl text-slate-700 hover:bg-slate-200/60 hover:text-blue-900 transition-all duration-200">
+                        <i class="fas fa-wand-magic-sparkles w-5 text-center"></i> <span>Wizard Form</span>
+                    </a>
+                </li>
+                <li class="pt-2 pb-1 text-xs font-semibold text-slate-400 px-4 uppercase tracking-wider">E-Commerce</li>
+                <li>
+                    <a href="#product" data-tab="product" class="tab-link flex items-center gap-3 px-4 py-3 rounded-xl text-slate-700 hover:bg-slate-200/60 hover:text-blue-900 transition-all duration-200">
+                        <i class="fas fa-box w-5 text-center"></i> <span>Product</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#order" data-tab="order" class="tab-link flex items-center gap-3 px-4 py-3 rounded-xl text-slate-700 hover:bg-slate-200/60 hover:text-blue-900 transition-all duration-200">
+                        <i class="fas fa-shopping-cart w-5 text-center"></i> <span>Order</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#delivery" data-tab="delivery" class="tab-link flex items-center gap-3 px-4 py-3 rounded-xl text-slate-700 hover:bg-slate-200/60 hover:text-blue-900 transition-all duration-200">
+                        <i class="fas fa-truck w-5 text-center"></i> <span>Delivery Status</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#customer" data-tab="customer" class="tab-link flex items-center gap-3 px-4 py-3 rounded-xl text-slate-700 hover:bg-slate-200/60 hover:text-blue-900 transition-all duration-200">
+                        <i class="fas fa-users w-5 text-center"></i> <span>Customer</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#message" data-tab="message" class="tab-link flex items-center justify-between gap-3 px-4 py-3 rounded-xl text-slate-700 hover:bg-slate-200/60 hover:text-blue-900 transition-all duration-200">
+                        <div class="flex items-center gap-3">
+                            <i class="fas fa-envelope w-5 text-center"></i> <span>Message</span>
+                        </div>
+                        <span class="bg-red-600 text-white text-xs px-2 py-0.5 rounded-full">3</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+    <div id="mainContent" class="sidebar-transition lg:pl-64 w-full min-h-screen flex flex-col">
+        
+        <header class="bg-white border-b border-slate-200 sticky top-0 z-30 px-6 py-4 flex items-center justify-between shadow-sm">
+            <button id="sidebarCollapse" class="text-slate-600 hover:text-blue-700 p-2 rounded-lg hover:bg-slate-100 focus:outline-none">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+            
+            <div class="relative">
+                <button id="userMenuBtn" class="flex items-center gap-2 focus:outline-none group">
+                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&q=80" alt="Avatar" class="w-9 h-9 rounded-full ring-2 ring-blue-700 object-cover">
+                    <span class="font-semibold text-sm text-slate-700 group-hover:text-slate-900 hidden sm:inline">Chloé Dubois</span>
+                    <i class="fas fa-chevron-down text-xs text-slate-400"></i>
+                </button>
+                <div id="userDropdown" class="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-xl border border-slate-100 hidden py-2 z-50">
+                    <a href="#" class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50"><i class="fas fa-user mr-2 text-slate-400"></i>Profil</a>
+                    <a href="#" class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50"><i class="fas fa-cog mr-2 text-slate-400"></i>Pengaturan</a>
+                    <hr class="my-1 border-slate-100">
+                    <a href="#" class="block px-4 py-2 text-sm text-red-600 hover:bg-red-50"><i class="fas fa-sign-out-alt mr-2"></i>Keluar</a>
+                </div>
+            </div>
+        </header>
+
+        <main class="p-6 flex-1 text-slate-700">
+            
+            <div id="page-dashboard" class="tab-pane space-y-6">
+                <div class="flex justify-between items-center">
+                    <h2 class="text-2xl font-bold text-slate-900">Vue d'ensemble (Dashboard Overview)</h2>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5">
+                    <div class="bg-gradient-to-br from-blue-700 via-blue-800 to-indigo-900 rounded-2xl p-5 text-white shadow-lg shadow-blue-900/20 transform hover:-translate-y-1 transition duration-200">
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <p class="text-white/70 text-sm font-medium uppercase">Chiffre d'Affaires</p>
+                                <h3 class="text-2xl font-bold mt-1">€142,380</h3>
+                            </div>
+                            <div class="w-12 h-12 rounded-xl bg-white/15 flex items-center justify-center text-xl"><i class="fas fa-euro-sign"></i></div>
+                        </div>
+                    </div>
+                    <div class="bg-gradient-to-br from-emerald-500 via-teal-600 to-cyan-700 rounded-2xl p-5 text-white shadow-lg shadow-emerald-500/20 transform hover:-translate-y-1 transition duration-200">
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <p class="text-white/70 text-sm font-medium uppercase">Commandes</p>
+                                <h3 class="text-2xl font-bold mt-1">+2,840</h3>
+                            </div>
+                            <div class="w-12 h-12 rounded-xl bg-white/15 flex items-center justify-center text-xl"><i class="fas fa-shopping-bag"></i></div>
+                        </div>
+                    </div>
+                    <div class="bg-gradient-to-br from-amber-400 via-orange-500 to-red-500 rounded-2xl p-5 text-white shadow-lg shadow-orange-500/20 transform hover:-translate-y-1 transition duration-200">
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <p class="text-white/70 text-sm font-medium uppercase">Produits Actifs</p>
+                                <h3 class="text-2xl font-bold mt-1">1,240</h3>
+                            </div>
+                            <div class="w-12 h-12 rounded-xl bg-white/15 flex items-center justify-center text-xl"><i class="fas fa-boxes"></i></div>
+                        </div>
+                    </div>
+                    <div class="bg-gradient-to-br from-red-700 via-pink-800 to-purple-900 rounded-2xl p-5 text-white shadow-lg shadow-red-900/20 transform hover:-translate-y-1 transition duration-200">
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <p class="text-white/70 text-sm font-medium uppercase">Visiteurs</p>
+                                <h3 class="text-2xl font-bold mt-1">10,842</h3>
+                            </div>
+                            <div class="w-12 h-12 rounded-xl bg-white/15 flex items-center justify-center text-xl"><i class="fas fa-eye"></i></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 xl:grid-cols-2 gap-6">
+                    <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
+                        <h4 class="font-bold text-slate-900 mb-3">Aktivitas Toko Terbaru</h4>
+                        <ul class="space-y-3 text-sm">
+                            <li class="flex items-center justify-between p-2 hover:bg-slate-50 rounded-lg"><span class="flex items-center gap-2"><i class="fas fa-circle text-xs text-blue-600"></i> Restock Tas Louis Vuitton</span><span class="text-slate-400">Baru saja</span></li>
+                            <li class="flex items-center justify-between p-2 hover:bg-slate-50 rounded-lg"><span class="flex items-center gap-2"><i class="fas fa-circle text-xs text-emerald-500"></i> Penjualan Parfum Chanel #PAR-CH02</span><span class="text-slate-400">14 mnt lalu</span></li>
+                            <li class="flex items-center justify-between p-2 hover:bg-slate-50 rounded-lg"><span class="flex items-center gap-2"><i class="fas fa-circle text-xs text-amber-500"></i> Kurir Colissimo memproses pengiriman</span><span class="text-slate-400">1 jam lalu</span></li>
+                        </ul>
+                    </div>
+                    <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
+                        <h4 class="font-bold text-slate-900 mb-3">Persentase Target Kuartal Kedua</h4>
+                        <div class="space-y-4">
+                            <div>
+                                <div class="flex justify-between text-xs font-semibold mb-1"><span>Target Penjualan Global</span><span>82%</span></div>
+                                <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden"><div class="bg-blue-700 h-full rounded-full" style="width: 82%"></div></div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-xs font-semibold mb-1"><span>Retensi Pelanggan</span><span>65%</span></div>
+                                <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden"><div class="bg-red-600 h-full rounded-full" style="width: 65%"></div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="page-analytic" class="tab-pane space-y-6 hidden">
+                <div class="flex justify-between items-center">
+                    <h2 class="text-2xl font-bold text-slate-900"><i class="fas fa-chart-line text-blue-700 mr-2"></i>Analytic & Deep Business Intelligence</h2>
+                </div>
+
+                <div class="grid grid-cols-1 xl:grid-cols-3 gap-6">
+                    <div class="xl:col-span-2 bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
+                        <h4 class="text-lg font-bold text-slate-900 mb-4">Analyse des Ventes (Sales Line Chart)</h4>
+                        <div class="h-80"><canvas id="lineChart"></canvas></div>
+                    </div>
+                    <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
+                        <h4 class="text-lg font-bold text-slate-900 mb-4">Catégories Cibles (Pie Chart)</h4>
+                        <div class="h-80 flex justify-center items-center"><canvas id="pieChart"></canvas></div>
+                    </div>
+                </div>
+
+                <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="text-center p-4 border-r border-slate-100 last:border-0">
+                        <h5 class="text-sm font-semibold text-slate-400 uppercase">Rata-rata Keranjang</h5>
+                        <h3 class="text-3xl font-extrabold text-blue-800 mt-2">€112.50</h3>
+                        <p class="text-xs text-emerald-500 mt-1"><i class="fas fa-arrow-up"></i> +4.2% bulan ini</p>
+                    </div>
+                    <div class="text-center p-4 border-r border-slate-100 last:border-0">
+                        <h5 class="text-sm font-semibold text-slate-400 uppercase">Conversion Rate</h5>
+                        <h3 class="text-3xl font-extrabold text-purple-800 mt-2">3.84%</h3>
+                        <p class="text-xs text-emerald-500 mt-1"><i class="fas fa-arrow-up"></i> +0.8% minggu ini</p>
+                    </div>
+                    <div class="text-center p-4 border-r border-slate-100 last:border-0">
+                        <h5 class="text-sm font-semibold text-slate-400 uppercase">Bounce Rate</h5>
+                        <h3 class="text-3xl font-extrabold text-red-800 mt-2">24.15%</h3>
+                        <p class="text-xs text-red-500 mt-1"><i class="fas fa-arrow-down"></i> -1.2% per hari</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="page-forms" class="tab-pane space-y-6 hidden">
+                <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm max-w-3xl">
+                    <h3 class="text-xl font-bold text-slate-900 mb-4"><i class="fas fa-edit text-blue-700 mr-2"></i>Formulir Input Standar</h3>
+                    <form class="space-y-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-slate-600 mb-1">Nama Depan</label>
+                                <input type="text" class="w-full border border-slate-200 rounded-xl px-4 py-2.5 focus:ring-2 focus:ring-blue-500/20 focus:border-blue-700 outline-none transition" placeholder="Chloé">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-slate-600 mb-1">Nama Belakang</label>
+                                <input type="text" class="w-full border border-slate-200 rounded-xl px-4 py-2.5 focus:ring-2 focus:ring-blue-500/20 focus:border-blue-700 outline-none transition" placeholder="Dubois">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-600 mb-1">Alamat Email</label>
+                            <input type="email" class="w-full border border-slate-200 rounded-xl px-4 py-2.5 focus:ring-2 focus:ring-blue-500/20 focus:border-blue-700 outline-none transition" placeholder="chloe@domain.fr">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-600 mb-1">Pesan Tambahan</label>
+                            <textarea rows="4" class="w-full border border-slate-200 rounded-xl px-4 py-2.5 focus:ring-2 focus:ring-blue-500/20 focus:border-blue-700 outline-none transition" placeholder="Tulis catatan Anda di sini..."></textarea>
+                        </div>
+                        <button type="button" class="bg-blue-700 text-white font-semibold px-6 py-2.5 rounded-xl shadow-md hover:bg-blue-800 transition">Kirim Data</button>
+                    </form>
+                </div>
+            </div>
+
+            <div id="page-tables" class="tab-pane space-y-6 hidden">
+                <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
+                    <h3 class="text-xl font-bold text-slate-900 mb-4"><i class="fas fa-table text-indigo-600 mr-2"></i>DataTables JS Integration</h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left js-datatable display compact">
+                            <thead class="bg-slate-50 text-slate-600 text-sm uppercase">
+                                <tr><th class="p-3">ID Reg</th><th class="p-3">Sektor Kerja</th><th class="p-3">Lokasi Kantor</th><th class="p-3">Status Pajak</th></tr>
+                            </thead>
+                            <tbody class="text-sm divide-y divide-slate-100">
+                                <tr><td class="p-3 font-semibold">#REG-0991</td><td class="p-3">Teknologi Dirgantara</td><td class="p-3">Toulouse</td><td class="p-3"><span class="px-2 py-0.5 bg-green-100 text-green-800 text-xs font-bold rounded">Aktif</span></td></tr>
+                                <tr><td class="p-3 font-semibold">#REG-1044</td><td class="p-3">Manufaktur Kosmetik</td><td class="p-3">Paris Île-de-France</td><td class="p-3"><span class="px-2 py-0.5 bg-green-100 text-green-800 text-xs font-bold rounded">Aktif</span></td></tr>
+                                <tr><td class="p-3 font-semibold">#REG-3312</td><td class="p-3">Agrikultur & Wine</td><td class="p-3">Bordeaux</td><td class="p-3"><span class="px-2 py-0.5 bg-amber-100 text-amber-800 text-xs font-bold rounded">Audit</span></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div id="page-ui-elements" class="tab-pane space-y-6 hidden">
+                <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
+                    <h3 class="text-xl font-bold text-slate-900 mb-4">Komponen Antarmuka (UI Elements)</h3>
+                    <div class="space-y-6">
+                        <div>
+                            <h5 class="text-sm font-semibold text-slate-400 uppercase tracking-wider mb-2">Alerts & Badges</h5>
+                            <div class="p-4 bg-blue-50 border-l-4 border-blue-700 text-blue-900 text-sm rounded-r-xl mb-3">
+                                <strong>Info Penting!</strong> Pembaharuan sistem Paris Admin dijadwalkan besok pukul 02:00 pagi.
+                            </div>
+                            <div class="flex gap-2">
+                                <span class="px-3 py-1 bg-blue-700 text-white text-xs font-semibold rounded-full">Primary</span>
+                                <span class="px-3 py-1 bg-red-600 text-white text-xs font-semibold rounded-full">Danger</span>
+                                <span class="px-3 py-1 bg-slate-800 text-white text-xs font-semibold rounded-full">Dark</span>
+                            </div>
+                        </div>
+                        <div>
+                            <h5 class="text-sm font-semibold text-slate-400 uppercase tracking-wider mb-2">Gradient Buttons</h5>
+                            <div class="flex flex-wrap gap-3">
+                                <button class="bg-gradient-to-r from-blue-700 to-indigo-800 text-white px-5 py-2 rounded-xl shadow-md font-medium hover:opacity-90 transition">Blue Gradient</button>
+                                <button class="bg-gradient-to-r from-red-600 to-pink-700 text-white px-5 py-2 rounded-xl shadow-md font-medium hover:opacity-90 transition">Red Gradient</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="page-wizard" class="tab-pane space-y-6 hidden">
+                <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm max-w-2xl">
+                    <h3 class="text-xl font-bold text-slate-900 mb-6"><i class="fas fa-wand-magic-sparkles text-purple-600 mr-2"></i>Multi-Step Wizard Form</h3>
+                    <div class="flex items-center justify-between mb-8 border-b border-slate-100 pb-4">
+                        <div class="flex items-center gap-2">
+                            <span class="w-8 h-8 rounded-full bg-blue-700 text-white flex items-center justify-center font-bold text-sm">1</span>
+                            <span class="text-sm font-bold text-blue-700">Akun</span>
+                        </div>
+                        <div class="h-0.5 bg-slate-200 flex-1 mx-4"></div>
+                        <div class="flex items-center gap-2">
+                            <span class="w-8 h-8 rounded-full bg-slate-200 text-slate-600 flex items-center justify-center font-bold text-sm">2</span>
+                            <span class="text-sm font-medium text-slate-400">Profil Kerja</span>
+                        </div>
+                    </div>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-slate-600 mb-1">Username</label>
+                            <input type="text" class="w-full border border-slate-200 rounded-xl px-4 py-2.5 outline-none focus:border-blue-700" value="chloe.dubois">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-600 mb-1">Kata Sandi</label>
+                            <input type="password" class="w-full border border-slate-200 rounded-xl px-4 py-2.5 outline-none focus:border-blue-700" value="••••••••••••">
+                        </div>
+                        <div class="pt-4 flex justify-end">
+                            <button class="bg-slate-900 text-white font-medium px-5 py-2 rounded-xl hover:bg-slate-800 transition">Berikutnya</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="page-product" class="tab-pane space-y-6 hidden">
+                <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
+                    <h3 class="text-xl font-bold text-slate-900 mb-4"><i class="fas fa-box text-blue-700 mr-2"></i>Katalog Produk Luxury</h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left js-datatable">
+                            <thead class="bg-slate-50 text-slate-600 text-sm uppercase">
+                                <tr><th>SKU</th><th>Nama Produk</th><th>Brand</th><th>Harga</th><th>Stok</th></tr>
+                            </thead>
+                            <tbody class="text-sm divide-y divide-slate-100">
+                                <tr><td class="p-3 font-semibold">#PAR-LV01</td><td class="p-3">Leather Travel Bag</td><td class="p-3">Louis Vuitton</td><td class="p-3">€2,400</td><td class="p-3 text-emerald-600 font-bold">12</td></tr>
+                                <tr><td class="p-3 font-semibold">#PAR-CH02</td><td class="p-3">Chanel No. 5</td><td class="p-3">Chanel</td><td class="p-3">€145</td><td class="p-3 text-emerald-600 font-bold">85</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div id="page-order" class="tab-pane space-y-6 hidden">
+                <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
+                    <h3 class="text-xl font-bold text-slate-900 mb-4"><i class="fas fa-shopping-cart text-emerald-600 mr-2"></i>Daftar Pesanan Masuk</h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left js-datatable">
+                            <thead class="bg-slate-50 text-slate-600 text-sm uppercase">
+                                <tr><th>No. Invoice</th><th>Pelanggan</th><th>Tanggal</th><th>Nominal</th><th>Metode</th></tr>
+                            </thead>
+                            <tbody class="text-sm divide-y divide-slate-100">
+                                <tr><td class="p-3 font-semibold">INV-FR-01</td><td class="p-3">Jean Dupont</td><td class="p-3">18/06/2026</td><td class="p-3 font-medium">€2,545</td><td class="p-3">Carte Bancaire</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div id="page-delivery" class="tab-pane space-y-6 hidden">
+                <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
+                    <h3 class="text-xl font-bold text-slate-900 mb-4"><i class="fas fa-truck text-amber-500 mr-2"></i>Status Logistik & Pengiriman</h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left js-datatable">
+                            <thead class="bg-slate-50 text-slate-600 text-sm uppercase">
+                                <tr><th>Resi Pelacakan</th><th>Ekspedisi</th><th>Destinasi</th><th>Status Kerja</th></tr>
+                            </thead>
+                            <tbody class="text-sm divide-y divide-slate-100">
+                                <tr><td class="p-3 font-semibold">FR-COLI-7712</td><td class="p-3">Colissimo</td><td class="p-3">Lyon</td><td class="p-3"><span class="px-2.5 py-1 text-xs font-semibold bg-blue-100 text-blue-800 rounded-full">En route</span></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div id="page-customer" class="tab-pane space-y-6 hidden">
+                <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
+                    <h3 class="text-xl font-bold text-slate-900 mb-4"><i class="fas fa-users text-purple-600 mr-2"></i>Manajemen Pelanggan</h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left js-datatable">
+                            <thead class="bg-slate-50 text-slate-600 text-sm uppercase">
+                                <tr><th>Profil</th><th>Nama Pengguna</th><th>Kontak Email</th><th>Kota</th></tr>
+                            </thead>
+                            <tbody class="text-sm divide-y divide-slate-100">
+                                <tr>
+                                    <td class="p-3"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=50&q=80" class="w-8 h-8 rounded-full object-cover"></td>
+                                    <td class="p-3 font-medium">Amélie Laurent</td><td class="p-3">amelie@laurent.fr</td><td class="p-3">Nice</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div id="page-message" class="tab-pane space-y-6 hidden">
+                <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
+                    <h3 class="text-xl font-bold text-slate-900 mb-4"><i class="fas fa-envelope text-red-600 mr-2"></i>Kotak Masuk Hub</h3>
+                    <div class="space-y-3">
+                        <div class="p-4 border border-slate-100 rounded-xl bg-slate-50 flex items-start gap-4">
+                            <div class="bg-red-100 text-red-600 p-2.5 rounded-xl"><i class="fas fa-exclamation-circle text-lg"></i></div>
+                            <div>
+                                <h5 class="font-bold text-slate-900">Kendala Verifikasi Pembayaran</h5>
+                                <p class="text-sm text-slate-500 mt-1">Kartu kredit saya ditolak untuk pemesanan tas Louis Vuitton malam ini.</p>
+                                <span class="text-xs text-slate-400 block mt-2">- Jean Dupont</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="script.js"></script>
+</body>
+</html>

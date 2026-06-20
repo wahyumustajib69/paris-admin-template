@@ -1,0 +1,22 @@
+
+.sidebar-transition {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+/* Custom styling DataTables to blend with Tailwind */
+.dataTables_wrapper .dataTables_length select,
+.dataTables_wrapper .dataTables_filter input {
+    border: 1px solid #e2e8f0;
+    border-radius: 0.5rem;
+    padding: 0.4rem 0.8rem;
+    outline: none;
+    font-size: 0.875rem;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button.current {
+    background: #1d4ed8 !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 0.5rem;
+}
+table.dataTable.no-footer {
+    border-bottom: 1px solid #e2e8f0 !important;
+}
